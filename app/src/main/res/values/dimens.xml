@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textsize">40sp</dimen>
+    <dimen name="textsize_small">20sp</dimen>
+    <dimen name="textsize_med">30dp</dimen>
+    <dimen name="margin_small">5dp</dimen>
+    <dimen name="margin_large">70dp</dimen>
+    <dimen name="margin_medium">20dp</dimen>
+    <dimen name="et_width">50dp</dimen>
+    <dimen name="otp_width">140dp</dimen>
+</resources>
