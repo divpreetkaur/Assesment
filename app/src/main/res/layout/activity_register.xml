@@ -50,6 +50,7 @@
         android:id="@+id/register_et_gender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
         android:hint="@string/gender"
         android:singleLine="true"
         android:layout_marginLeft="@dimen/margin_medium"
