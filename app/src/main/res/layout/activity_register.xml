@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/fullname"
-        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+        style="@style/CommonValidation"
         android:layout_marginLeft="@dimen/margin_medium"
         android:singleLine="true"
         android:layout_marginRight="@dimen/margin_medium"/>
@@ -51,7 +51,7 @@
         android:id="@+id/register_et_gender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+        style="@style/CommonValidation"
         android:hint="@string/gender"
         android:singleLine="true"
         android:layout_marginLeft="@dimen/margin_medium"
@@ -61,7 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/usertype"
-        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+        style="@style/CommonValidation"
         android:layout_marginLeft="@dimen/margin_medium"
         android:singleLine="true"
         android:layout_marginRight="@dimen/margin_medium"/>
@@ -71,7 +71,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/occupation"
         android:singleLine="true"
-        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+        style="@style/CommonValidation"
         android:layout_marginLeft="@dimen/margin_medium"
         android:layout_marginRight="@dimen/margin_medium"/>
     <RelativeLayout
