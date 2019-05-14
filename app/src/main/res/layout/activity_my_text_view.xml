@@ -3,7 +3,8 @@
     android:id="@+id/relativelayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="5dp"
+    android:padding="@dimen/padding"
+
 
     >
     <TextView android:id="@+id/text_tv_name"
@@ -25,8 +26,8 @@
     <ImageView
         android:id="@+id/text_iv"
         android:layout_width="wrap_content"
-        android:src="@drawable/ic_launcher_background"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top"
         android:layout_alignParentRight="true"
         />
   <ImageView
@@ -44,7 +45,7 @@
         android:text="LIKE"
         android:layout_below="@+id/text_iv"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="@dimen/margin_right"
         />
     <TextView
         android:id="@+id/text_tv_count"
@@ -53,8 +54,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignRight="@id/btn_like"
         android:layout_alignParentBottom="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
 
         />
 
