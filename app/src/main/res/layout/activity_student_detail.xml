@@ -16,12 +16,12 @@
 <EditText
     android:id="@+id/detail_et_rollno"
     style="@style/editText"
-    android:digits="@string/digits"
+    android:inputType="number"
     android:hint="@string/hint_rollno"/>
 <EditText
     android:id="@+id/detail_et_class"
     style="@style/editText"
-    android:digits="@string/digits"
+    android:inputType="number"
     android:hint="@string/hint_class"/>
  <Button
      android:id="@+id/detail_btn"

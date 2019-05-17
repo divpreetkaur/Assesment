@@ -23,8 +23,8 @@ public class StudentDetailActivity extends AppCompatActivity {
     String cls;
     Button btnSubmit;
     Helper helper = new Helper();
-
-
+    ArrayList<Student> imageslist;
+    ArrayList<String>arrayList=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +33,7 @@ public class StudentDetailActivity extends AppCompatActivity {
         init();
         final Context context = getApplicationContext();
       //getting data by bundles
+
         Bundle extras = getIntent().getExtras();
         if (extras != null)
         {

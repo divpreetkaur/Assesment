@@ -82,11 +82,13 @@ public class StudentListActivity extends AppCompatActivity implements StudentAda
                          temprollno=student.getRollno();
                          tempclass=student.getClasses();
                         getPosition=position;
-                        Intent intent =new Intent(StudentListActivity.this,StudentDetailActivity.class);
-                        intent.putExtra(getString(R.string.key_name),tempname);
-                        intent.putExtra(getString(R.string.key_rollno),temprollno);
-                        intent.putExtra(getString(R.string.key_class),tempclass);
-                        intent.putExtra(getString(R.string.action),getString(R.string.edit));
+                        Bundle bundle = new Bundle();
+                        bundle.putString(getString(R.string.key_name),tempname);
+                        bundle.putString(getString(R.string.key_rollno),temprollno);
+                        bundle.putString(getString(R.string.key_class),tempclass);
+                        bundle.putString(getString(R.string.action),getString(R.string.edit));
+                        Intent intent = new Intent(StudentListActivity.this,StudentDetailActivity.class);
+                        intent.putExtras(bundle);
                         startActivityForResult(intent,1);
                     }
                 })
@@ -98,13 +100,13 @@ public class StudentListActivity extends AppCompatActivity implements StudentAda
                         tempname=student.getName();
                         temprollno=student.getRollno();
                         tempclass=student.getClasses();
-
-                        Intent intent =new Intent(StudentListActivity.this,StudentDetailActivity.class);
-                        intent.putExtra(getString(R.string.key_name),tempname);
-                        intent.putExtra(getString(R.string.key_rollno),temprollno);
-                        intent.putExtra(getString(R.string.key_class),tempclass);
-                        intent.putExtra(getString(R.string.action),getString(R.string.show));
-
+                        Bundle bundle = new Bundle();
+                        bundle.putString(getString(R.string.key_name),tempname);
+                        bundle.putString(getString(R.string.key_rollno),temprollno);
+                        bundle.putString(getString(R.string.key_class),tempclass);
+                        bundle.putString(getString(R.string.action),getString(R.string.show));
+                        Intent intent = new Intent(StudentListActivity.this,StudentDetailActivity.class);
+                        intent.putExtras(bundle);
                         startActivity(intent);
                     }
                 })
@@ -123,7 +125,6 @@ public class StudentListActivity extends AppCompatActivity implements StudentAda
                 {
                  textView.setVisibility(View.INVISIBLE);
                 }
-
 
 
 

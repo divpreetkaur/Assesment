@@ -16,7 +16,7 @@ private static final int  PAUSE=3000;
             public void run() {
                 Intent intent = new Intent(SplashActivity.this, StudentListActivity.class);
                 startActivity(intent);
-               // SplashActivity.this.finish(); //to destroy this activity
+               finish();
 
             }
         }, PAUSE);
