@@ -38,7 +38,6 @@ public class StudentListActivity extends AppCompatActivity implements StudentAda
     TextView textView;
     Student student=new Student();
      RecyclerView.LayoutManager newLayoutManager;
-     StudentDetailActivity studentDetailActivity;
     GridLayoutManager gridLayoutManager;
     ArrayList<Student> arrayList = new ArrayList<>();
 
@@ -79,7 +78,7 @@ public class StudentListActivity extends AppCompatActivity implements StudentAda
                 .setNegativeButton(getString(R.string.edit), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         //on clicking edit option
-                       Student student=arrayList.get(position);
+                        student=arrayList.get(position);
 
                          tempName=student.getName();
                          tempRollno=student.getRollno();
@@ -99,7 +98,7 @@ public class StudentListActivity extends AppCompatActivity implements StudentAda
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //on clicking view option
-                        Student student=arrayList.get(position);
+                         student=arrayList.get(position);
                         tempName=student.getName();
                         tempRollno=student.getRollno();
                         tempClass=student.getClasses();
@@ -143,8 +142,10 @@ public class StudentListActivity extends AppCompatActivity implements StudentAda
         }
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
+                rollno=arrayList.get(getPosition).getRollno();
                 arrayList.remove(getPosition);
                 studentAdapter.notifyItemRemoved(getPosition);
+                rollnoList.remove(rollno);
                 name = data.getStringExtra(getString(R.string.key_name));
                 rollno = data.getStringExtra(getString(R.string.key_rollno));
 
