@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Assignment-3</string>
+    <string name="hint_name">NAME</string>
+    <string name="hint_rollno">ROLLNO.</string>
+    <string name="hint_class">CLASS</string>
+    <string name="btn_text">ADD STUDENT</string>
+    <string name="btn2_text">SUBMIT</string>
+    <string name="menu2_text">SORT BY NAME</string>
+    <string name="menu3_text">SORT BY ROLLNO.</string>
+    <string name="digits">1234567890</string>
+    <string name="alphabets">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz</string>
+    <string name="string_name">ENTER NAME</string>
+    <string name="string_rollno">ENTER ROLLNO</string>
+    <string name="string_cls">ENTER CLASS</string>
+    <string name="show">VIEW</string>
+    <string name="delete">DELETE</string>
+    <string name="edit">EDIT</string>
+    <string name="options">SELECT OPTION</string>
+    <string name="update">UPDATE</string>
+    <string name="key_name">NAME</string>
+    <string name="key_rollno">ROLLNO</string>
+    <string name="key_class">CLASS</string>
+    <string name="action">ACTION</string>
+    <string name="DATA">NO DATA FOUND</string>
+    <string name="validata_rollno">THIS ROLLNO ALREADY EXISTS ENTER ANOTHER ROLLNO</string>
+
+</resources>
