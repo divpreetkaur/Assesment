@@ -23,8 +23,6 @@ public class StudentDetailActivity extends AppCompatActivity {
     String cls;
     Button btnSubmit;
     Helper helper = new Helper();
-    ArrayList<Student> imageslist;
-    ArrayList<String>arrayList=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +51,7 @@ public class StudentDetailActivity extends AppCompatActivity {
                        rollno = etRollno.getText().toString();
                     if (helper.validate(context, name, rollno, cls)) {
                         //sending back the activity result
+
                            Intent intent = new Intent();
                            intent.putExtra(getString(R.string.key_name), name);
                            intent.putExtra(getString(R.string.key_rollno), rollno);

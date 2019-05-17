@@ -15,10 +15,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+
 
 public class StudentListActivity extends AppCompatActivity implements StudentAdapter.MyClickListener   {
     private RecyclerView recyclerView;
@@ -28,10 +30,11 @@ public class StudentListActivity extends AppCompatActivity implements StudentAda
     String rollno;
     String cls;
     Helper helper;
-    String tempname;
-    String temprollno;
-    String tempclass;
+    String tempName;
+    String tempRollno;
+    String tempClass;
     int getPosition;
+    ArrayList<String>rollnoList=new ArrayList<>();
     TextView textView;
     Student student=new Student();
      RecyclerView.LayoutManager newLayoutManager;
@@ -78,14 +81,14 @@ public class StudentListActivity extends AppCompatActivity implements StudentAda
                         //on clicking edit option
                        Student student=arrayList.get(position);
 
-                         tempname=student.getName();
-                         temprollno=student.getRollno();
-                         tempclass=student.getClasses();
+                         tempName=student.getName();
+                         tempRollno=student.getRollno();
+                         tempClass=student.getClasses();
                         getPosition=position;
                         Bundle bundle = new Bundle();
-                        bundle.putString(getString(R.string.key_name),tempname);
-                        bundle.putString(getString(R.string.key_rollno),temprollno);
-                        bundle.putString(getString(R.string.key_class),tempclass);
+                        bundle.putString(getString(R.string.key_name),tempName);
+                        bundle.putString(getString(R.string.key_rollno),tempRollno);
+                        bundle.putString(getString(R.string.key_class),tempClass);
                         bundle.putString(getString(R.string.action),getString(R.string.edit));
                         Intent intent = new Intent(StudentListActivity.this,StudentDetailActivity.class);
                         intent.putExtras(bundle);
@@ -97,13 +100,13 @@ public class StudentListActivity extends AppCompatActivity implements StudentAda
                     public void onClick(DialogInterface dialog, int which) {
                         //on clicking view option
                         Student student=arrayList.get(position);
-                        tempname=student.getName();
-                        temprollno=student.getRollno();
-                        tempclass=student.getClasses();
+                        tempName=student.getName();
+                        tempRollno=student.getRollno();
+                        tempClass=student.getClasses();
                         Bundle bundle = new Bundle();
-                        bundle.putString(getString(R.string.key_name),tempname);
-                        bundle.putString(getString(R.string.key_rollno),temprollno);
-                        bundle.putString(getString(R.string.key_class),tempclass);
+                        bundle.putString(getString(R.string.key_name),tempName);
+                        bundle.putString(getString(R.string.key_rollno),tempRollno);
+                        bundle.putString(getString(R.string.key_class),tempClass);
                         bundle.putString(getString(R.string.action),getString(R.string.show));
                         Intent intent = new Intent(StudentListActivity.this,StudentDetailActivity.class);
                         intent.putExtras(bundle);
@@ -113,36 +116,53 @@ public class StudentListActivity extends AppCompatActivity implements StudentAda
 
                 .show();
     }
+
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 2) {
             if (resultCode == RESULT_OK) {
                 name = data.getStringExtra(getString(R.string.key_name));
                 rollno = data.getStringExtra(getString(R.string.key_rollno));
-                cls = data.getStringExtra(getString(R.string.key_class));
-                arrayList.add(new Student(name, rollno, cls));
-                if(arrayList.size()>0)
-                {
-                 textView.setVisibility(View.INVISIBLE);
-                }
+                //validating rollno.
+                if (rollnoList.contains(rollno)) {
+                    Toast.makeText(getApplicationContext(),getString(R.string.validata_rollno), Toast.LENGTH_SHORT).show();
+                    openStudentDetail(null);
+                } else {
+                    rollnoList.add(rollno);
+                    cls = data.getStringExtra(getString(R.string.key_class));
+                    arrayList.add(new Student(name, rollno, cls));
 
+                    if (arrayList.size() > 0) {
+                        textView.setVisibility(View.INVISIBLE);
+                    }
+                }
 
 
             }
         }
-        if(requestCode==1)
-        {
-            if(resultCode==RESULT_OK)
-            {
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
                 arrayList.remove(getPosition);
                 studentAdapter.notifyItemRemoved(getPosition);
                 name = data.getStringExtra(getString(R.string.key_name));
                 rollno = data.getStringExtra(getString(R.string.key_rollno));
-                cls = data.getStringExtra(getString(R.string.key_class));
-                arrayList.add(getPosition,new Student(name,rollno,cls));
-            }
-        }
 
+                if (rollnoList.contains(rollno)) {
+                    Toast.makeText(getApplicationContext(),getString(R.string.validata_rollno), Toast.LENGTH_SHORT).show();
+                    openStudentDetail(null);
+
+                }
+                 else {
+                     rollnoList.add(rollno);
+                    cls = data.getStringExtra(getString(R.string.key_class));
+
+                    arrayList.add(getPosition, new Student(name, rollno, cls));
+
+                }
+            }
+
+        }
     }
 
 
@@ -201,3 +221,4 @@ public class StudentListActivity extends AppCompatActivity implements StudentAda
     }
 
 }
+
