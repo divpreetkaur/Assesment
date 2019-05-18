@@ -37,7 +37,7 @@ public class StudentListActivity extends AppCompatActivity implements StudentAda
     ArrayList<String>rollnoList=new ArrayList<>();
     TextView textView;
     Student student=new Student();
-     RecyclerView.LayoutManager newLayoutManager;
+    RecyclerView.LayoutManager newLayoutManager;
     GridLayoutManager gridLayoutManager;
     ArrayList<Student> arrayList = new ArrayList<>();
 

@@ -79,11 +79,11 @@ public class StudentDetailActivity extends AppCompatActivity {
 
     }
     //converting edit text to text view
-    void setTextView(String stu_name,String stu_rollno,String stu_cls)
+    void setTextView(String stuName,String stuRollno,String stuCls)
     {
-         etName.setText(stu_name);
-         etRollno.setText(stu_rollno);
-         etClass.setText(stu_cls);
+         etName.setText(stuName);
+         etRollno.setText(stuRollno);
+         etClass.setText(stuCls);
          etName.setEnabled(false);
         etRollno.setEnabled(false);
         etClass.setEnabled(false);
@@ -92,11 +92,11 @@ public class StudentDetailActivity extends AppCompatActivity {
 
     }
 
-    void setEditText(String stu_name,String stu_rollno,String stu_cls)
+    void setEditText(String stuName,String stuRollno,String stuCls)
     {
-        etName.setText(stu_name);
-        etRollno.setText(stu_rollno);
-        etClass.setText(stu_cls);
+        etName.setText(stuName);
+        etRollno.setText(stuRollno);
+        etClass.setText(stuCls);
         btnSubmit.setText(getString(R.string.update));
     }
 }

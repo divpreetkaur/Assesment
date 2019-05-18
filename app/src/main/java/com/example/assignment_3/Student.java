@@ -3,14 +3,14 @@ package com.example.assignment_3;
 public class Student {
     String name;
     String rollno;
-    String stu_class;
+    String cls;
     Student()
     {}
-    Student(String stu_name,String stu_rollno,String stu_class)
+    Student(String stuName,String stuRollno,String stuClass)
     {
-        name=stu_name;
-        rollno=stu_rollno;
-        this.stu_class=stu_class;
+        name=stuName;
+        rollno=stuRollno;
+        cls=stuClass;
     }
     String getName()
     {
@@ -22,6 +22,6 @@ public class Student {
     }
     String getClasses()
     {
-        return stu_class;
+        return cls;
     }
 }
