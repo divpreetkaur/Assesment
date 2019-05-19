@@ -119,6 +119,7 @@ public class StudentListActivity extends AppCompatActivity implements StudentAda
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+      //when user adds a student
         if (requestCode == 2) {
             if (resultCode == RESULT_OK) {
                 name = data.getStringExtra(getString(R.string.key_name));
@@ -139,7 +140,7 @@ public class StudentListActivity extends AppCompatActivity implements StudentAda
 
 
             }
-        }
+        }//when user updates the record
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
                 rollno=arrayList.get(getPosition).getRollno();
@@ -159,6 +160,8 @@ public class StudentListActivity extends AppCompatActivity implements StudentAda
                     cls = data.getStringExtra(getString(R.string.key_class));
 
                     arrayList.add(getPosition, new Student(name, rollno, cls));
+                    studentAdapter.notifyDataSetChanged();
+
 
                 }
             }
