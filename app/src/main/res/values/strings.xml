@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Assignment4</string>
+    <string name="DATA">NO DATA FOUND</string>
+    <string name="btn_text">ADD STUDENT</string>
+    <string name="btn2_text">SUBMIT</string>
+    <string name="hint_name">NAME</string>
+    <string name="hint_rollno">ROLLNO</string>
+    <string name="hint_class">CLASS</string>
+    <string name="alphabets">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz</string>
+    <string name="string_name">ENTER NAME</string>
+    <string name="string_rollno">ENTER ROLLNO</string>
+    <string name="string_cls">ENTER CLASS</string>
+    <string name="option">SELECT OPTIONS</string>
+    <string name="delete">DELETE</string>
+    <string name="edit">EDIT</string>
+    <string name="show">VIEW</string>
+    <string name="add">ADD</string>
+    <string name="menu2_text">SORT BY NAME</string>
+    <string name="menu3_text">SORT BY ROLLNO</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
