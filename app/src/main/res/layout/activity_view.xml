@@ -16,17 +16,17 @@
         android:layout_margin="@dimen/margin"
         >
         <EditText
-            android:id="@+id/detail_et_name"
+
             style="@style/editText"
             android:digits="@string/alphabets"
             />
         <EditText
-            android:id="@+id/detail_et_rollno"
+
             style="@style/editText"
             android:inputType="number"
             />
         <EditText
-            android:id="@+id/detail_et_class"
+
             style="@style/editText"
             android:inputType="number"
             />

@@ -14,7 +14,7 @@ public class helper {
 
     ArrayList<String> rollnoArrayList = new ArrayList<>();
     String temprollno;
-
+    //validating the edit text fields
    public static boolean validate( Context context,String name, String rollno, String cls) {
 
         if (name.length() == 0) {

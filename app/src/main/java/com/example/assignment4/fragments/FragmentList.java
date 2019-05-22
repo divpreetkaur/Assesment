@@ -84,6 +84,7 @@ public class FragmentList extends Fragment implements StudentAdapter.OnItemClick
             {
                 this.action=action;
             }
+
             public void getData(String name,String rollno,String cls)
             {
 

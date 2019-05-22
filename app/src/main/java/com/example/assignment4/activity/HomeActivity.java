@@ -36,9 +36,10 @@ public class HomeActivity extends AppCompatActivity implements FragmentList.MyCl
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                //getting position of tab
                 tabPosition = tab.getPosition();
                 if (tabPosition == 1) {
-
+                       Log.i("div",""+tabPosition);
                       FragmentDetail fragmentDetail =(FragmentDetail)fragmentsList.get(1);
                     fragmentDetail.clearEditText();
                 }
@@ -74,7 +75,7 @@ public class HomeActivity extends AppCompatActivity implements FragmentList.MyCl
         ((FragmentDetail) fragment1).instantiate(this);
         fragmentsList.add(fragment1);
     }
-    //adding tab names
+    //adding tabs
     void getTitleList() {
         fragmentName.add(constant.FRAGMENT_TAB1_NAME);
         fragmentName.add(constant.FRAGMENT_TAB2_NAME);
@@ -95,7 +96,7 @@ public class HomeActivity extends AppCompatActivity implements FragmentList.MyCl
               }
 
               }
-      // going from second fragment to first fragment
+      // to open first  fragment from second fragment
               @Override
     public void onClick(String name, String rollno, String cls) {
 
