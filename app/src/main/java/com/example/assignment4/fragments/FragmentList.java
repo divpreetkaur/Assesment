@@ -35,7 +35,7 @@ public class FragmentList extends Fragment implements StudentAdapter.OnItemClick
   private String mClass;
   RecyclerView recyclerView;
   RecyclerView.LayoutManager layoutManager;
-  String action;
+  String action=getString(R.string.add);
   StudentAdapter studentAdapter;
   TextView textView;
   int getPosition;

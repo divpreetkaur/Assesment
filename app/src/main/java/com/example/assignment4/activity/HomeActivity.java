@@ -40,7 +40,7 @@ public class HomeActivity extends AppCompatActivity implements FragmentList.MyCl
                 //getting position of tab
                 tabPosition = tab.getPosition();
                 if (tabPosition == 1) {
-                    ((FragmentList)fragment).getBtnAction(getString(R.string.tabPress));
+
                        FragmentDetail fragmentDetail =(FragmentDetail)fragmentsList.get(1);
                        fragmentDetail.clearEditText();
 
