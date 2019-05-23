@@ -80,7 +80,7 @@ public class FragmentList extends Fragment implements StudentAdapter.OnItemClick
         });
         return view;
             }
-            void getBtnAction(String action)
+           public void getBtnAction(String action)
             {
                 this.action=action;
             }

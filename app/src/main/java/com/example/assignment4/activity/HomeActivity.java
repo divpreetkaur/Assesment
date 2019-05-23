@@ -26,6 +26,7 @@ public class HomeActivity extends AppCompatActivity implements FragmentList.MyCl
     ViewPager viewPager;
     int tabPosition;
     constants constant=new constants();
+    Fragment fragment =new FragmentList();
     TabLayout tabLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +40,11 @@ public class HomeActivity extends AppCompatActivity implements FragmentList.MyCl
                 //getting position of tab
                 tabPosition = tab.getPosition();
                 if (tabPosition == 1) {
-                       Log.i("div",""+tabPosition);
-                      FragmentDetail fragmentDetail =(FragmentDetail)fragmentsList.get(1);
-                    fragmentDetail.clearEditText();
+                    ((FragmentList)fragment).getBtnAction(getString(R.string.tabPress));
+                       FragmentDetail fragmentDetail =(FragmentDetail)fragmentsList.get(1);
+                       fragmentDetail.clearEditText();
+
+
                 }
             }
 
