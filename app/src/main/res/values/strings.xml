@@ -6,8 +6,6 @@
     <string name="hint_name">NAME</string>
     <string name="hint_rollno">ROLLNO</string>
     <string name="hint_class">CLASS</string>
-    <string name="alphabets">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz </string>
-
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="alphabets">ABCDEFGHIJKLMNOPQRSTUVWXYZ  abcdefghijklmnopqrstuvwxyz</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
