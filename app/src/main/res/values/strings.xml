@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Assignment6</string>
+    <string name="user_id">USERID</string>
+    <string name="user_email">USER EMAIL</string>
+    <string name="user_name">USER NAME</string>
+    <string name="see_posts">SEE POSTS</string>
+    <string name="details">MORE DETAILS</string>
+     <string name="posts">POSTS</string>
+</resources>

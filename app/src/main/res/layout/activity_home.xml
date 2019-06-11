@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/relative_layout"
+    android:orientation="vertical"
+    android:background="@color/colorPlaceHolder"
+    tools:context=".activity.HomeActivity">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_weight="1">
+
+<android.support.v7.widget.RecyclerView
+    android:id="@+id/recycler_View"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" />
+</LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_weight="1">
+<ProgressBar
+    android:id="@+id/user_progress_circular"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    />
+    <ImageView
+    android:id="@+id/user_iv"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/user1"
+    android:layout_marginBottom="@dimen/margin_small"
+
+
+
+    />
+ <TextView
+     android:id="@+id/user_tv_username"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:text="@string/user_name"
+     android:layout_marginBottom="@dimen/margin_small"
+     />
+    <TextView
+        android:id="@+id/user_tv_userid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/user_id"
+        android:layout_marginBottom="@dimen/margin_small"/>
+    <TextView
+        android:id="@+id/user_tv_useremail"
+        android:layout_below="@+id/user_tv_userid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/user_email"
+        android:layout_marginBottom="@dimen/margin_small"
+        />
+     <Button
+         android:id="@+id/user_btn_showposts"
+         style="@style/BtnTheme"
+         android:text="@string/see_posts"
+         android:layout_marginBottom="@dimen/margin_small"
+          />
+    <Button
+        android:id="@+id/user_btn_showDetails"
+        style="@style/BtnTheme"
+        android:padding="@dimen/margin_small"
+        android:text="@string/details"
+
+
+        />
+</LinearLayout>
+</LinearLayout>
+
+
+
