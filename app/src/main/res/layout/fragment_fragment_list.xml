@@ -13,7 +13,7 @@
             android:id="@+id/list_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/DATA"
+            android:text="@string/data"
             android:visibility="gone"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"

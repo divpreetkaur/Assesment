@@ -7,46 +7,72 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.example.assignment5.database.DataBaseHelper;
+import com.example.assignment5.model.Student;
 import com.example.assignment5.utilities.Constants;
+
+import java.util.ArrayList;
 
 public class BackgroundIntentServices extends IntentService {
 
 
-    DataBaseHelper dataBaseHelper;
-    Constants constants=new Constants();
-
+    private DataBaseHelper dataBaseHelper;
+    private Constants constants=new Constants();
+    private Student student;
+    private ArrayList<Student> mArrayList=new ArrayList<>();
     public BackgroundIntentServices() {
 
         super("intent_service");
     }
-
+   //performing database operations
     @Override
     protected void onHandleIntent(Intent intent) {
         dataBaseHelper=new DataBaseHelper(getApplicationContext());
+        boolean isSuccess=false;
         if(intent.getStringExtra(constants.ACTION_KEY).equals(constants.ADD)) {
-            dataBaseHelper.insertData(intent.getStringExtra(constants.NAME_KEY), intent.getStringExtra(constants.ROLLNO_KEY),
-                    intent.getStringExtra(constants.CLASS_KEY));
+            String name = intent.getStringExtra(constants.NAME_KEY);
+            String rollno = intent.getStringExtra(constants.ROLLNO_KEY);
+            String cls = intent.getStringExtra(constants.CLASS_KEY);
+            student = new Student(name, rollno, cls, constants.OLD_ROLL_NO);
+            isSuccess = dataBaseHelper.insertData(student);
         }
+
         else if(intent.getStringExtra(constants.ACTION_KEY).equals(constants.EDIT))
         {
             String name = intent.getStringExtra(constants.NAME_KEY);
             String rollno = intent.getStringExtra(constants.ROLLNO_KEY);
             String cls = intent.getStringExtra(constants.CLASS_KEY);
             String oldRollNUmber=intent.getStringExtra(constants.OLDROLLNUMBER);
-            dataBaseHelper.updateData(name,rollno,cls,oldRollNUmber);
+            student = new Student(name, rollno, cls, oldRollNUmber);
+          isSuccess=dataBaseHelper.updateData(student);
         }
         else if(intent.getStringExtra(constants.ACTION_KEY).equals(constants.DELETE))
         {
-            String name = intent.getStringExtra(constants.NAME_KEY);
             String rollno = intent.getStringExtra(constants.ROLLNO_KEY);
-            String cls = intent.getStringExtra(constants.CLASS_KEY);
-            dataBaseHelper.deleteData(name,rollno,cls);
+            isSuccess=dataBaseHelper.deleteData(rollno);
+        }
+        else if(intent.getStringExtra(constants.ACTION_KEY).equals(constants.READ_OPERATION))
+        {
+            mArrayList=dataBaseHelper.getListElements();
+            isSuccess=true;
         }
         //sending broadcast
         intent.setAction(constants.BROADCAST_ACTION);
-        String echoMessage =constants.MESSAGE;
-        LocalBroadcastManager.getInstance(getBaseContext()).sendBroadcast(intent.putExtra(constants.MESSAGE,echoMessage));
+        String actionType = intent.getStringExtra(constants.ACTION_KEY);
+        if (isSuccess) {
+            intent.putExtra(constants.IS_SUCCESS,constants.TRUE);
+            intent.putExtra(constants.ACTION_KEY,actionType);
+            LocalBroadcastManager.getInstance(getBaseContext()).sendBroadcast(intent);
+        } else if (isSuccess && actionType.equals(constants.READ_OPERATION)) {
+            intent.putParcelableArrayListExtra(constants.ARRAY_LIST, mArrayList);
+            intent.putExtra(constants.ACTION_KEY,actionType);
+            LocalBroadcastManager.getInstance(getBaseContext()).sendBroadcast(intent);
 
-
+        }
+        else if(!isSuccess)
+        {
+            intent.putExtra(constants.IS_SUCCESS,constants.TRUE);
+            intent.putExtra(constants.ACTION_KEY,actionType);
+            LocalBroadcastManager.getInstance(getBaseContext()).sendBroadcast(intent);
+        }
     }
 }

@@ -9,17 +9,21 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.assignment5.R;
 import com.example.assignment5.adapters.ViewPagerAdapter;
+import com.example.assignment5.callback.ClickListener;
+import com.example.assignment5.callback.MyClickListener;
+import com.example.assignment5.callback.OnDataSavedListener;
 import com.example.assignment5.database.DataBaseHelper;
 import com.example.assignment5.fragments.FragmentDetail;
 import com.example.assignment5.fragments.FragmentList;
+import com.example.assignment5.model.Student;
 import com.example.assignment5.services.BackgroundTask;
 import com.example.assignment5.utilities.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeActivity extends AppCompatActivity implements FragmentList.MyClickListener,
-        FragmentDetail.ClickListener {
+public class HomeActivity extends AppCompatActivity implements MyClickListener, ClickListener
+        {
 
     private ViewPagerAdapter mViewPagerAdapter;
     private List<Fragment> mFragmentsList=new ArrayList<>();
@@ -27,13 +31,12 @@ public class HomeActivity extends AppCompatActivity implements FragmentList.MyCl
     private Constants constants;
     private ViewPager mViewPager;
     private int mTabPosition;
-    private String mAction;
     private TabLayout tabLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        constants=new Constants();
+        constants = new Constants();
         mViewPager = (ViewPager) findViewById(R.id.home_vp);
         tabLayout = (TabLayout) findViewById(R.id.tab);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -42,7 +45,7 @@ public class HomeActivity extends AppCompatActivity implements FragmentList.MyCl
                 //getting position of tab
                 mTabPosition = tab.getPosition();
                 if (mTabPosition == 1) {
-                    FragmentDetail fragmentDetail =(FragmentDetail)mFragmentsList.get(1);
+                    FragmentDetail fragmentDetail = (FragmentDetail) mFragmentsList.get(1);
                     fragmentDetail.clearEditText();
 
 
@@ -60,14 +63,15 @@ public class HomeActivity extends AppCompatActivity implements FragmentList.MyCl
             }
         });
         addPagesTofragmentList();
-       getTitleList();
+        getTitleList();
         mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), mFragmentsList, mFragmentName);
         mViewPager.setAdapter(mViewPagerAdapter);
         mViewPager.setCurrentItem(0);
         tabLayout.setupWithViewPager(mViewPager);
+
     }
 
-    // adding pages to fragmentlist
+   //adding fragments to arraylist
     private void addPagesTofragmentList() {
 
         mFragmentsList = new ArrayList<>();
@@ -77,6 +81,7 @@ public class HomeActivity extends AppCompatActivity implements FragmentList.MyCl
         Fragment fragment1 = new FragmentDetail();
         ((FragmentDetail) fragment1).instantiateListener(this);
         mFragmentsList.add(fragment1);
+
     }
     //adding tabs
     void getTitleList() {
@@ -85,18 +90,23 @@ public class HomeActivity extends AppCompatActivity implements FragmentList.MyCl
     }
 
     @Override
-    public void myClick(Bundle bundle) {
-       mViewPager.setCurrentItem(1);
+    public void myClick(Student student,String actionType) {
+
         FragmentDetail fragmentDetail=(FragmentDetail)mFragmentsList.get(1);
-        fragmentDetail.clearEditText();
-        if(bundle!=null)
-        {
-           mAction=bundle.getString(constants.ACTION_KEY);
-           if(mAction.equals(constants.EDIT))
-           {
-               fragmentDetail.setEditText(bundle);
-           }
+        FragmentList fragmentList = (FragmentList) mFragmentsList.get(0);
+          if(actionType.equals(constants.ADD)) {
+              mViewPager.setCurrentItem(1);
+              fragmentDetail.clearEditText();
+          }
+        else if(actionType.equals(constants.EDIT))
+        {  mViewPager.setCurrentItem(1);
+            fragmentDetail.setEditText(student);
+
         }
+        else if(actionType.equals(constants.DELETE))
+          {
+              fragmentList.deleteItem();
+          }
 
     }
    public void changeTab()
@@ -104,26 +114,35 @@ public class HomeActivity extends AppCompatActivity implements FragmentList.MyCl
        mViewPager.setCurrentItem(0);
    }
     @Override
-    public void onClick(Bundle bundle) {
+    public void onClick(Student student,String actionType) {
 
 
         FragmentList fragmentList = (FragmentList) mFragmentsList.get(0);
-        fragmentList.insert(bundle);
+          if(actionType.equals(constants.ADD) || actionType.equals(constants.EDIT)) {
+              fragmentList.insert(actionType, student);
+          }
+          else if(actionType.equals(constants.DELETE))
+          {
+              fragmentList.deleteItem();
+          }
+
        changeTab();
 
     }
 
     @Override
-    public void getService(String service) {
+    public void setService(String service) {
      FragmentList fragmentList=(FragmentList)mFragmentsList.get(0);
-     fragmentList.getService(service);
+     fragmentList.setService(service);
+    }
+
+    @Override
+    public void fetchDbList(ArrayList<Student> arrayList, String actionType) {
+        FragmentList fragmentList=(FragmentList)mFragmentsList.get(0);
+        fragmentList.onFetchStudentList(arrayList);
+
     }
 
 
-
-
-
-
-
-    }
+}
 

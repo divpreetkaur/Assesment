@@ -1,11 +1,25 @@
 <resources>
     <string name="app_name">Assignment5</string>
-    <string name="DATA">NO DATA FOUND</string>
-    <string name="btn1_text">ADD</string>
-    <string name="btn2_text">SUBMIT</string>
+    <string name="data">NO DATA FOUND</string>
+    <string name="btnAdd_text">ADD</string>
+    <string name="btnSubmit_text">SUBMIT</string>
     <string name="hint_name">NAME</string>
     <string name="hint_rollno">ROLLNO</string>
     <string name="hint_class">CLASS</string>
     <string name="alphabets">ABCDEFGHIJKLMNOPQRSTUVWXYZ  abcdefghijklmnopqrstuvwxyz</string>
+    <string name="data_entered">DATA ENTERED SUCCESSFULLY</string>
+    <string name="data_not_added">DATA NOT ADDED</string>
+    <string name="data_not_updated">DATA NOT UPDATED</string>
+    <string name="data_deleted">DATA DELETED SUCCESSFULLY</string>
+    <string name="data_not_deleted">DATA NOT DELETED</string>
+    <string name="data_updated">DATA UPDATED SUCCESSFULLY</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="rollno_validate">THIS ROLLNO ALREADY EXISTS</string>
+    <string name="choose">CHOOSE</string>
+    <string name="delete_option">DELETE</string>
+    <string name="edit_option">EDIT</string>
+    <string name="view_option">VIEW</string>
+    <string name="background_task">ASYNC TASK</string>
+    <string name="background_service">SERVICES</string>
+    <string name="backgound_intentService">INTENT SERVICE</string>
 </resources>

@@ -28,4 +28,10 @@ public class Constants {
     public String ENTERED_DATA="DATA SUCCESSFULLY ADDED";
     public String  MESSAGE="MESSAGE";
     public String OLDROLLNUMBER="OLDROLLNUMBER";
+    public String READ_OPERATION="READ_OPERATION";
+    public String OLD_ROLL_NO="0";
+    public String IS_SUCCESS="IsSuccess";
+    public String TRUE="TRUE";
+    public String FALSE="FALSE";
+    public String ARRAY_LIST="ARRAYLIST";
 }

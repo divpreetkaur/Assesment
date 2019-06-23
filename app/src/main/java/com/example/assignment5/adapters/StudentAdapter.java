@@ -4,11 +4,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.assignment5.R;
+import com.example.assignment5.callback.OnItemClickListener;
 import com.example.assignment5.model.Student;
 
 import java.util.ArrayList;
@@ -81,10 +83,7 @@ import java.util.ArrayList;
             return studentArrayList.size();
 
         }
-        public  interface OnItemClickListener
-        {
-            void onItemClick(int position, View v);
-        }
+
     }
 
 

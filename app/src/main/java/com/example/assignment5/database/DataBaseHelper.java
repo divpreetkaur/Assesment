@@ -9,12 +9,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.example.assignment5.model.Student;
 import com.example.assignment5.utilities.Constants;
 
 import java.util.ArrayList;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
     static Constants constants = new Constants();
+    Student student=new Student();
+    ArrayList<Student>arrayList=new ArrayList<>();
     public static final String DATABASE_NAME = constants.DATABASE_NAME;
     public static final String TABLE_NAME =constants.TABLE_NAME;
     public static final String COL_1 =constants.COL_NAME;
@@ -38,30 +41,37 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertData(String name, String rollno, String cls) {
+    public boolean insertData(final Student student) {
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_1, name);
-        contentValues.put(COL_2, rollno);
-        contentValues.put(COL_3,cls);
+        contentValues.put(COL_1, student.getName());
+        contentValues.put(COL_2, student.getRollno());
+        contentValues.put(COL_3,student.getClasses());
        long result=db.insert(TABLE_NAME, null, contentValues);
-       if(result==-1)
-           return false;
+       if(result>=1)
+           return true;
        else
-       return true;
+       return false;
     }
-    public boolean updateData(String name,String rollno,String cls,String oldRollNumber) {
+    public boolean updateData(final Student student) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_1,name);
-        contentValues.put(COL_2,rollno);
-        contentValues.put(COL_3,cls);
-        db.update(TABLE_NAME, contentValues, constants.COL_ROLLNO + " = ?",new String[] {oldRollNumber});
-        return true;
+        contentValues.put(COL_1,student.getName());
+        contentValues.put(COL_2,student.getRollno());
+        contentValues.put(COL_3,student.getClasses());
+       long result=db.update(TABLE_NAME, contentValues, constants.COL_ROLLNO + " = ?",new String[] {student.getOldRollno()});
+        if(result>=1)
+            return true;
+        else
+            return false;
     }
-    public Integer deleteData (String name,String rollno,String cls) {
+    public boolean deleteData (final String rollno) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(TABLE_NAME, constants.COL_ROLLNO + " = ?",new String[] { rollno});
+        long result=db.delete(TABLE_NAME, constants.COL_ROLLNO + " = ?",new String[] { rollno});
+        if(result>=1)
+            return true;
+        else
+            return false;
     }
 
     public Cursor getAllData()
@@ -74,5 +84,19 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
 
         return res;
+    }
+
+    public ArrayList<Student> getListElements()
+    {
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cursor=getAllData();
+        if(cursor!=null) {
+            while (cursor.moveToNext()) {
+                arrayList.add(new Student(cursor.getString(0),
+                        cursor.getString(1), cursor.getString(2),constants.OLD_ROLL_NO));
+
+            }
+        }
+        return arrayList;
     }
 }

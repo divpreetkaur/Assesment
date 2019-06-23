@@ -9,8 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.assignment5.R;
 import com.example.assignment5.activity.HomeActivity;
 import com.example.assignment5.adapters.StudentAdapter;
+import com.example.assignment5.callback.OnDataSavedListener;
 import com.example.assignment5.database.DataBaseHelper;
 import com.example.assignment5.fragments.FragmentList;
 import com.example.assignment5.model.Student;
@@ -18,53 +20,78 @@ import com.example.assignment5.utilities.Constants;
 
 import java.util.ArrayList;
 
-public class BackgroundTask extends AsyncTask<String,Void,Boolean> {
+public class BackgroundTask extends AsyncTask<Student,Void,Boolean> {
     Constants constants = new Constants();
+    private String mActionType;
+    private Student mStudent;
     Context context;
+    private OnDataSavedListener mListener;
+    private ArrayList<Student> mArrayList;
 
 
-    public BackgroundTask(Context context) {
+    public BackgroundTask(Context context,final OnDataSavedListener listener,final String actionType) {
         this.context = context;
+        this.mListener=listener;
+        this.mActionType=actionType;
+
+
+    }
+
+    @Override
+    protected Boolean doInBackground(Student... student) {
+        Boolean isSuccess=false;
+        mStudent=student[0];
+       DataBaseHelper dataBaseHelper = new DataBaseHelper(context);
+        if (mActionType.equals(constants.ADD)) {
+             isSuccess=dataBaseHelper.insertData(mStudent);
+        } else if (mActionType.equals(constants.EDIT)) {
+            isSuccess=dataBaseHelper.updateData(mStudent);
+        }
+          else if(mActionType.equals(constants.DELETE)) {
+            isSuccess=dataBaseHelper.deleteData(student[0].getRollno());
+        }
+          else if(mActionType.equals(constants.READ_OPERATION))
+        {
+            mArrayList=dataBaseHelper.getListElements();
+              isSuccess=true;
+
+
+        }
+        return isSuccess;
     }
 
 
     @Override
-    protected Boolean doInBackground(String... params) {
-        Boolean answer=false;
-        String method = params[0];
-        DataBaseHelper dataBaseHelper = new DataBaseHelper(context);
-        if (method.equals(constants.ADD)) {
-            String name = params[1];
-            String rollno = params[2];
-            String cls = params[3];
-             answer=dataBaseHelper.insertData(name, rollno, cls);
-        } else if (method.equals(constants.EDIT)) {
-            String name = params[1];
-            String rollno = params[2];
-            String cls = params[3];
-            String oldRollNumber=params[4];
-            answer=dataBaseHelper.updateData(name, rollno, cls,oldRollNumber);
-        }
-          else if(method.equals(constants.DELETE))
+    protected void onPostExecute(Boolean isSuccess) {
 
-        { String name = params[1];
-            String rollno = params[2];
-            String cls = params[3];
-            dataBaseHelper.deleteData(name,rollno,cls);
+         if(isSuccess) {
+             if (mActionType.equals(constants.ADD)
+                     || mActionType.equals(constants.EDIT)) {
+                 mListener.onDataSavedSuccess(mActionType.equals(constants.ADD), mStudent);
 
+             } else if (mActionType.equals(constants.DELETE)) {
 
-        }
-        return answer;
-    }
-
-
-    @Override
-    protected void onPostExecute(Boolean answer) {
-
-         if(answer==true)
-         {
-             Toast.makeText(context,constants.ENTERED_DATA,Toast.LENGTH_LONG).show();
+                 mListener.onDeleteSuccess();
+             } else if (mActionType.equals(constants.READ_OPERATION)) {
+                 mListener.onFetchStudentList(mArrayList);
+             }
          }
+         else if(!isSuccess)
+         {
+             if (mActionType.equals(constants.ADD)
+                     || mActionType.equals(constants.EDIT)) {
+
+                 mListener.onDataSavedError(mActionType.equals(constants.ADD));
+
+             } else if (mActionType.equals(constants.DELETE)) {
+
+                 mListener.onDeleteError();
+
+             }
+         }
+
+
+
 
     }
 }
