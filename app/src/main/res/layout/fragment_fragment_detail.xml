@@ -29,7 +29,7 @@
         <Button
             android:id="@+id/detail_btn"
             style="@style/buttonSecondary"
-            android:text="@string/btn2_text"
+            android:text="@string/btnSubmit_text"
             android:textColor="@color/colorPlaceholder"
             android:layout_below="@+id/detail_et_class"
             >

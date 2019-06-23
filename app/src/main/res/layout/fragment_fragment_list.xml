@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/buttonSecondary"
-            android:text="@string/btn1_text"
+            android:text="@string/btnAdd_text"
             android:layout_alignParentBottom="true"
             android:layout_gravity="bottom"
             android:gravity="center"
