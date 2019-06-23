@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.assignment5.R;
 import com.example.assignment5.activity.ViewActivity;
@@ -107,12 +108,25 @@ public class FragmentList extends Fragment  implements OnItemClickListener, OnDa
          if (actionType.equals(constants.ADD)) {
              mArrayList.add(student);
              studentAdapter.notifyDataSetChanged();
+             showToast(constants.ADD);
          } else if (actionType.equals(constants.EDIT)) {
              mArrayList.remove(clickPosition);
              studentAdapter.notifyItemRemoved(clickPosition);
              mArrayList.add(clickPosition,student);
              studentAdapter.notifyDataSetChanged();
+             showToast(constants.EDIT);
+
+
          }
+     }
+     public void showToast(String actionType)
+     {
+         if(actionType.equals(constants.ADD))
+         {
+             Toast.makeText(getActivity(),getResources().getString(R.string.data_entered),Toast.LENGTH_LONG).show();
+         }
+         else
+             Toast.makeText(getActivity(),getResources().getString(R.string.data_updated),Toast.LENGTH_LONG).show();
      }
 
     @Override
@@ -122,6 +136,9 @@ public class FragmentList extends Fragment  implements OnItemClickListener, OnDa
                 .setPositiveButton(getResources().getString(R.string.delete_option), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         Student student=mArrayList.get(position);
+                        mName=student.getName();
+                        mRollno=student.getRollno();
+                        mClass=student.getClasses();
                           deletePosition=position;
                         //deleting by async task
                          if(mService.equals(constants.BACKGROUND_TASK)) {
@@ -194,6 +211,7 @@ public class FragmentList extends Fragment  implements OnItemClickListener, OnDa
     {
 
         studentAdapter.deleteItem(deletePosition);
+        Toast.makeText(getActivity(),getResources().getString(R.string.data_deleted),Toast.LENGTH_LONG).show();
     }
     public void setService(String service)
     {
@@ -215,6 +233,7 @@ public class FragmentList extends Fragment  implements OnItemClickListener, OnDa
 
     @Override
     public void onDeleteSuccess() {
+        Toast.makeText(getActivity(), getResources().getString(R.string.data_deleted), Toast.LENGTH_LONG).show();
         mMyClickListener.myClick(null,constants.DELETE);
 
     }

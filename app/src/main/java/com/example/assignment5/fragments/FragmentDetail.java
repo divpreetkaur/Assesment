@@ -126,6 +126,7 @@ public class FragmentDetail extends Fragment implements OnDataSavedListener {
         etName.getText().clear();
         etRollno.getText().clear();
         etCls.getText().clear();
+        setBtnAction(constants.ADD);
     }
 
 
@@ -142,7 +143,6 @@ public class FragmentDetail extends Fragment implements OnDataSavedListener {
     public void instantiateListener(ClickListener clickListener) {
         this.clickListener = clickListener;
     }
-
     public void setBtnAction(String action) {
         this.mAction = action;
     }
@@ -160,7 +160,7 @@ public class FragmentDetail extends Fragment implements OnDataSavedListener {
                         Student student = new Student(mName, mRollno, mCls, mOldRollNumber);
                         BackgroundTask backgroundTask = new BackgroundTask(getActivity(), FragmentDetail.this, mAction);
                         backgroundTask.execute(student);
-                         setBtnAction(constants.ADD);
+
 
 
                     }
@@ -171,16 +171,16 @@ public class FragmentDetail extends Fragment implements OnDataSavedListener {
 
                         clickListener.setService(constants.BACKGROUND_SERVICES);
                         Intent intent = new Intent(getActivity(), BackgroundServices.class);
+                        mName = etName.getText().toString();
+                        mRollno = etRollno.getText().toString();
+                        mCls = etCls.getText().toString();
                         intent.putExtra(constants.NAME_KEY, etName.getText().toString());
                         intent.putExtra(constants.ROLLNO_KEY, etRollno.getText().toString());
                         intent.putExtra(constants.CLASS_KEY, etCls.getText().toString());
                         intent.putExtra(constants.OLDROLLNUMBER, mOldRollNumber);
                         intent.putExtra(constants.ACTION_KEY, mAction);
                         getActivity().startService(intent);
-                        mName = etName.getText().toString();
-                        mRollno = etRollno.getText().toString();
-                        mCls = etCls.getText().toString();
-                        setBtnAction(constants.ADD);
+
 
 
                     }
@@ -190,6 +190,9 @@ public class FragmentDetail extends Fragment implements OnDataSavedListener {
                     public void onClick(DialogInterface dialog, int which) {
                         //to perform database operations using intent service
                         clickListener.setService(constants.BACKGROUND_INTENTSERVICES);
+                        mName = etName.getText().toString();
+                        mRollno = etRollno.getText().toString();
+                        mCls = etCls.getText().toString();
                         Intent intent = new Intent(getActivity(), BackgroundIntentServices.class);
                         intent.putExtra(constants.NAME_KEY, etName.getText().toString());
                         intent.putExtra(constants.ROLLNO_KEY, etRollno.getText().toString());
@@ -197,9 +200,7 @@ public class FragmentDetail extends Fragment implements OnDataSavedListener {
                         intent.putExtra(constants.OLDROLLNUMBER, mOldRollNumber);
                         intent.putExtra(constants.ACTION_KEY, mAction);
                         getActivity().startService(intent);
-                        mName = etName.getText().toString();
-                        mRollno = etRollno.getText().toString();
-                        setBtnAction(constants.ADD);
+
 
 
                     }
@@ -223,7 +224,6 @@ public class FragmentDetail extends Fragment implements OnDataSavedListener {
             clickListener.onClick(student, constants.ADD);
 
         } else {
-
             clickListener.onClick(student, constants.EDIT);
 
         }
@@ -252,41 +252,45 @@ public class FragmentDetail extends Fragment implements OnDataSavedListener {
     @Override
     public void onFetchStudentList(ArrayList<Student> studentArrayList) {
         int flag = 0;
+        String newRollno=etRollno.getText().toString();
          ArrayList<String> rollnoArrayList=new ArrayList<>();
         for (int i = 0; i < studentArrayList.size(); i++) {
             Student student = studentArrayList.get(i);
                 rollnoArrayList.add(student.getRollno());
         }
-        if (rollnoArrayList.contains(etRollno.getText().toString())) {
+        if (rollnoArrayList.contains(newRollno) && !newRollno.equals(mOldRollNumber)) {
             Toast.makeText(getActivity(),getResources().getString(R.string.rollno_validate), Toast.LENGTH_LONG).show();
 
         } else {
-            rollnoArrayList.add(etRollno.getText().toString());
             onItemClick();
         }
+
     }
     //broadcast receiver
     public class DataReceiver extends BroadcastReceiver
     {
         @Override
         public void onReceive(Context context, Intent intent) {
+            //if database operation is performed successfully
+            //checking the action key and performing the further operations
             if (intent.getStringExtra(constants.IS_SUCCESS).equals(constants.TRUE)) {
                 if (intent.getStringExtra(constants.ACTION_KEY).equals(constants.ADD)) {
                     Student student=new Student(mName,mRollno,mCls,constants.OLD_ROLL_NO);
                     clickListener.onClick(student,constants.ADD);
-                    Toast.makeText(context, getResources().getString(R.string.data_entered), Toast.LENGTH_SHORT).show();
+
                 } else if (intent.getStringExtra(constants.ACTION_KEY).equals(constants.EDIT)) {
                     Student student=new Student(mName,mRollno,mCls,mOldRollNumber);
                      clickListener.onClick(student,constants.EDIT);
-                    Toast.makeText(context, getResources().getString(R.string.data_updated), Toast.LENGTH_SHORT).show();
                 } else if (intent.getStringExtra(constants.ACTION_KEY).equals(constants.DELETE)) {
                     clickListener.onClick(null,constants.DELETE);
-                    Toast.makeText(context, getResources().getString(R.string.data_deleted), Toast.LENGTH_SHORT).show();
+
                 } else if (intent.getStringExtra(constants.ACTION_KEY).equals(constants.READ_OPERATION)) {
 
                     mStudentArrayList = intent.getParcelableArrayListExtra(constants.ARRAY_LIST);
                     clickListener.fetchDbList(mStudentArrayList, constants.ACTION_KEY);
                 }
+                //if database operation is not performed successfully,checking the
+                //action key and showing toast to user
             } else if (intent.getStringExtra(constants.IS_SUCCESS).equals(constants.FALSE)) {
                 if (intent.getStringExtra(constants.ACTION_KEY).equals(constants.ADD)) {
                     Toast.makeText(context, getResources().getString(R.string.data_not_added), Toast.LENGTH_SHORT).show();

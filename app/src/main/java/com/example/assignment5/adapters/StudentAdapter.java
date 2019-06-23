@@ -1,5 +1,6 @@
 package com.example.assignment5.adapters;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.assignment5.R;
 import com.example.assignment5.callback.OnItemClickListener;
@@ -74,6 +76,7 @@ import java.util.ArrayList;
             studentArrayList.remove(index);
 
             notifyItemRemoved(index);
+
 
 
 

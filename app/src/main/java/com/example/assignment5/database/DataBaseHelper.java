@@ -60,10 +60,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_2,student.getRollno());
         contentValues.put(COL_3,student.getClasses());
        long result=db.update(TABLE_NAME, contentValues, constants.COL_ROLLNO + " = ?",new String[] {student.getOldRollno()});
-        if(result>=1)
+       if(result>=1)
             return true;
         else
             return false;
+
     }
     public boolean deleteData (final String rollno) {
         SQLiteDatabase db = this.getWritableDatabase();
