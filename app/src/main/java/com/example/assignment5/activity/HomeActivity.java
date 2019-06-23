@@ -6,6 +6,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.example.assignment5.R;
 import com.example.assignment5.adapters.ViewPagerAdapter;
@@ -106,6 +107,7 @@ public class HomeActivity extends AppCompatActivity implements MyClickListener, 
         else if(actionType.equals(constants.DELETE))
           {
               fragmentList.deleteItem();
+              Toast.makeText(this,getResources().getString(R.string.data_deleted),Toast.LENGTH_LONG).show();
           }
 
     }
@@ -118,8 +120,14 @@ public class HomeActivity extends AppCompatActivity implements MyClickListener, 
 
 
         FragmentList fragmentList = (FragmentList) mFragmentsList.get(0);
-          if(actionType.equals(constants.ADD) || actionType.equals(constants.EDIT)) {
+          if(actionType.equals(constants.ADD) ) {
+              Toast.makeText(this, getResources().getString(R.string.data_entered), Toast.LENGTH_LONG).show();
               fragmentList.insert(actionType, student);
+          }
+          else if(actionType.equals(constants.EDIT)) {
+              Toast.makeText(this, getResources().getString(R.string.data_updated), Toast.LENGTH_LONG).show();
+              fragmentList.insert(actionType, student);
+
           }
           else if(actionType.equals(constants.DELETE))
           {

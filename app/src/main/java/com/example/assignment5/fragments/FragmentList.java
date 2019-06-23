@@ -76,6 +76,7 @@ public class FragmentList extends Fragment  implements OnItemClickListener, OnDa
          mService=constants.BACKGROUND_TASK;
         studentAdapter = new StudentAdapter(mArrayList);
         recyclerView.setAdapter(studentAdapter);
+        context=this.getActivity().getApplicationContext();
         fetchAllData();
          btnAdd.setOnClickListener(new View.OnClickListener() {
              @Override
@@ -108,26 +109,18 @@ public class FragmentList extends Fragment  implements OnItemClickListener, OnDa
          if (actionType.equals(constants.ADD)) {
              mArrayList.add(student);
              studentAdapter.notifyDataSetChanged();
-             showToast(constants.ADD);
+         
          } else if (actionType.equals(constants.EDIT)) {
              mArrayList.remove(clickPosition);
              studentAdapter.notifyItemRemoved(clickPosition);
              mArrayList.add(clickPosition,student);
              studentAdapter.notifyDataSetChanged();
-             showToast(constants.EDIT);
+
 
 
          }
      }
-     public void showToast(String actionType)
-     {
-         if(actionType.equals(constants.ADD))
-         {
-             Toast.makeText(getActivity(),getResources().getString(R.string.data_entered),Toast.LENGTH_LONG).show();
-         }
-         else
-             Toast.makeText(getActivity(),getResources().getString(R.string.data_updated),Toast.LENGTH_LONG).show();
-     }
+
 
     @Override
     public void onItemClick(final int position, View v) {
@@ -211,7 +204,7 @@ public class FragmentList extends Fragment  implements OnItemClickListener, OnDa
     {
 
         studentAdapter.deleteItem(deletePosition);
-        Toast.makeText(getActivity(),getResources().getString(R.string.data_deleted),Toast.LENGTH_LONG).show();
+        Toast.makeText(context,getResources().getString(R.string.data_deleted),Toast.LENGTH_LONG).show();
     }
     public void setService(String service)
     {
