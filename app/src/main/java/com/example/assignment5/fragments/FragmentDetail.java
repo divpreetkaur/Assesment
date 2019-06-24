@@ -284,6 +284,7 @@ public class FragmentDetail extends Fragment implements OnDataSavedListener {
                 } else if (intent.getStringExtra(constants.ACTION_KEY).equals(constants.DELETE)) {
                     clickListener.onClick(null,constants.DELETE);
 
+
                 } else if (intent.getStringExtra(constants.ACTION_KEY).equals(constants.READ_OPERATION)) {
 
                     mStudentArrayList = intent.getParcelableArrayListExtra(constants.ARRAY_LIST);
