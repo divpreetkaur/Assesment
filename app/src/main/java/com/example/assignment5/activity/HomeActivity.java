@@ -151,6 +151,17 @@ public class HomeActivity extends AppCompatActivity implements MyClickListener, 
 
     }
 
+            @Override
+            public void onDbOperationError(String actionType) {
+                 if(actionType.equals(constants.ADD))
+                     Toast.makeText(this, getResources().getString(R.string.data_not_added), Toast.LENGTH_SHORT).show();
+                 else if(actionType.equals(constants.EDIT))
+                     Toast.makeText(this,getResources().getString(R.string.data_not_updated),Toast.LENGTH_LONG).show();
+                 else if(actionType.equals(constants.DELETE))
+                     Toast.makeText(this,getResources().getString(R.string.data_not_deleted),Toast.LENGTH_LONG).show();
 
-}
+            }
+
+
+        }
 

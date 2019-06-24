@@ -290,14 +290,14 @@ public class FragmentDetail extends Fragment implements OnDataSavedListener {
                     clickListener.fetchDbList(mStudentArrayList, constants.ACTION_KEY);
                 }
                 //if database operation is not performed successfully,checking the
-                //action key and showing toast to user
+                //action key and calling function in activity class to show a toast
             } else if (intent.getStringExtra(constants.IS_SUCCESS).equals(constants.FALSE)) {
                 if (intent.getStringExtra(constants.ACTION_KEY).equals(constants.ADD)) {
-                    Toast.makeText(context, getResources().getString(R.string.data_not_added), Toast.LENGTH_SHORT).show();
+                    clickListener.onDbOperationError(constants.ADD);
                 } else if (intent.getStringExtra(constants.ACTION_KEY).equals(constants.EDIT)) {
-                    Toast.makeText(context, getResources().getString(R.string.data_not_updated), Toast.LENGTH_SHORT).show();
+                    clickListener.onDbOperationError(constants.EDIT);
                 } else if (intent.getStringExtra(constants.ACTION_KEY).equals(constants.DELETE)) {
-                    Toast.makeText(context, getResources().getString(R.string.data_not_deleted), Toast.LENGTH_SHORT).show();
+                    clickListener.onDbOperationError(constants.DELETE);
                 }
             }
         }

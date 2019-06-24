@@ -11,4 +11,5 @@ public interface ClickListener {
         void setService(String service);
 
         void fetchDbList(ArrayList<Student> arrayList, String actionType);
+        void onDbOperationError(String actionType);
 }
