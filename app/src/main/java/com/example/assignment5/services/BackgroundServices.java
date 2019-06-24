@@ -64,11 +64,12 @@ public class BackgroundServices extends Service {
         //sending broadcast
         intent.setAction(constants.BROADCAST_ACTION);
         String actionType = intent.getStringExtra(constants.ACTION_KEY);
-        if (isSuccess) {
+        if (isSuccess && (actionType.equals(constants.EDIT)) || actionType.equals(constants.ADD) ){
             intent.putExtra(constants.IS_SUCCESS,constants.TRUE);
             intent.putExtra(constants.ACTION_KEY,actionType);
             LocalBroadcastManager.getInstance(getBaseContext()).sendBroadcast(intent);
         } else if (isSuccess && actionType.equals(constants.READ_OPERATION)) {
+            intent.putExtra(constants.IS_SUCCESS,constants.TRUE);
             intent.putParcelableArrayListExtra(constants.ARRAY_LIST, mArrayList);
             intent.putExtra(constants.ACTION_KEY,actionType);
             LocalBroadcastManager.getInstance(getBaseContext()).sendBroadcast(intent);
