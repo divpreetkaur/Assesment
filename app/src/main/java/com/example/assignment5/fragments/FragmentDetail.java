@@ -246,7 +246,7 @@ public class FragmentDetail extends Fragment implements OnDataSavedListener {
     //if data is not deleted
     @Override
     public void onDeleteError() {
-        Toast.makeText(getActivity(), getResources().getString(R.string.data_not_deleted), Toast.LENGTH_LONG).show();
+
     }
     //fetching the student arraylist from database
     @Override

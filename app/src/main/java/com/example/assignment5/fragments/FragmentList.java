@@ -226,13 +226,15 @@ public class FragmentList extends Fragment  implements OnItemClickListener, OnDa
 
     @Override
     public void onDeleteSuccess() {
-        Toast.makeText(getActivity(), getResources().getString(R.string.data_deleted), Toast.LENGTH_LONG).show();
         mMyClickListener.myClick(null,constants.DELETE);
 
     }
 
     @Override
     public void onDeleteError() {
+
+        Toast.makeText(getActivity(), getResources().getString(R.string.data_not_deleted), Toast.LENGTH_LONG).show();
+
 
     }
    //adding the fetched arraylist from database into recycler view
