@@ -132,6 +132,7 @@ public class HomeActivity extends AppCompatActivity implements MyClickListener, 
           else if(actionType.equals(constants.DELETE))
           {
               fragmentList.deleteItem();
+              Toast.makeText(this,getResources().getString(R.string.data_deleted),Toast.LENGTH_LONG).show();
           }
 
        changeTab();
