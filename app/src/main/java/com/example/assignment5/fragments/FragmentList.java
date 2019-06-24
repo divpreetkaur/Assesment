@@ -109,7 +109,7 @@ public class FragmentList extends Fragment  implements OnItemClickListener, OnDa
          if (actionType.equals(constants.ADD)) {
              mArrayList.add(student);
              studentAdapter.notifyDataSetChanged();
-         
+
          } else if (actionType.equals(constants.EDIT)) {
              mArrayList.remove(clickPosition);
              studentAdapter.notifyItemRemoved(clickPosition);
@@ -204,7 +204,7 @@ public class FragmentList extends Fragment  implements OnItemClickListener, OnDa
     {
 
         studentAdapter.deleteItem(deletePosition);
-        Toast.makeText(context,getResources().getString(R.string.data_deleted),Toast.LENGTH_LONG).show();
+
     }
     public void setService(String service)
     {
