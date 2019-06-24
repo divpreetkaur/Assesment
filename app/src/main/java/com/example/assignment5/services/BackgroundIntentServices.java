@@ -58,7 +58,7 @@ public class BackgroundIntentServices extends IntentService {
         //sending broadcast
         intent.setAction(constants.BROADCAST_ACTION);
         String actionType = intent.getStringExtra(constants.ACTION_KEY);
-        if (isSuccess && (actionType.equals(constants.ADD) || actionType.equals(constants.EDIT))) {
+        if (isSuccess && (actionType.equals(constants.ADD) || actionType.equals(constants.EDIT)) || actionType.equals(constants.DELETE)) {
             intent.putExtra(constants.IS_SUCCESS,constants.TRUE);
             intent.putExtra(constants.ACTION_KEY,actionType);
             LocalBroadcastManager.getInstance(getBaseContext()).sendBroadcast(intent);
