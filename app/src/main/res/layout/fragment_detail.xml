@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.detailfragment.DetailFragment">
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/margin"
+        >
+        <EditText
+            android:id="@+id/detail_et_name"
+            style="@style/editText"
+            android:digits="@string/alphabets"
+            android:hint="@string/hint_name"/>
+        <EditText
+            android:id="@+id/detail_et_rollno"
+            style="@style/editText"
+            android:inputType="number"
+            android:hint="@string/hint_rollno"/>
+        <EditText
+            android:id="@+id/detail_et_class"
+            style="@style/editText"
+            android:inputType="number"
+            android:hint="@string/hint_class"/>
+        <Button
+            android:id="@+id/detail_btn"
+            style="@style/buttonSecondary"
+            android:text="@string/btn_submitText"
+            android:textColor="@color/colorPlaceholder"
+            android:layout_below="@+id/detail_et_class"
+            >
+
+        </Button>
+    </LinearLayout>
+
+
+
+
+
+</FrameLayout>

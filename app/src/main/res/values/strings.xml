@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Assignment5MVP</string>
+    <string name="btn_addText">ADD</string>
+    <string name="btn_submitText">SUBMIT</string>
+    <string name="hint_class">CLASS</string>
+    <string name="hint_name">NAME</string>
+    <string name="hint_rollno">ROLLNO</string>
+    <string name="alphabets">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz</string>
+    <string name="enter_name">PLEASE ENTER NAME</string>
+    <string name="enter_rollno">PLEASE ENTER ROLLNO</string>
+    <string name="enter_class">PLEASE ENTER CLASS</string>
+    <string name="background_task">ASYNC TASK</string>
+    <string name="background_service">SERVICE</string>
+    <string name="background_intentservice">INTENT SERVICE</string>
+    <string name="choose">CHOOSE FROM OPTIONS BELOW</string>
+    <string name="delete_option">DELETE</string>
+    <string name="edit_option">EDIT</string>
+    <string name="view_option">VIEW</string>
+    <string name="existing_rollno">THIS ROLLNO ALREADY EXISTS</string>
+    <string name="add_data_fail">FAILED TO ADD DATA</string>
+    <string name="update_data_fail">FAILED TO UPDATE DATA</string>
+    <string name="delete_data_fail">FAILED TO DELETE DATA</string>
+</resources>
